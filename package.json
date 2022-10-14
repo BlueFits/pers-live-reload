@@ -22,6 +22,7 @@
     "cheerio": "^1.0.0-rc.12",
     "chokidar": "^3.5.3",
     "concurrently": "^7.4.0",
+    "log-timestamp": "^0.3.0",
     "puppeteer": "^13.7.0",
     "rimraf": "^3.0.2",
     "typescript": "^4.8.4",

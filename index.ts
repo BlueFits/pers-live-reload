@@ -1,7 +1,6 @@
 import PuppeteerBrowser from "./components/Puppeteer";
 import chokidar from "chokidar";
 import path from "path";
-
 import "log-timestamp";
 
 type config = { url: string };
