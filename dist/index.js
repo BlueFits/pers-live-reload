@@ -15,19 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Puppeteer_1 = __importDefault(require("./components/Puppeteer"));
 const chokidar_1 = __importDefault(require("chokidar"));
 const path_1 = __importDefault(require("path"));
-const config_json_1 = __importDefault(require("./config.json"));
 require("log-timestamp");
-const launch = () => __awaiter(void 0, void 0, void 0, function* () {
-    let browserInstance = yield Puppeteer_1.default.build(config_json_1.default.url);
-    yield browserInstance.start();
-    const watcher = chokidar_1.default.watch(path_1.default.resolve(process.cwd() + "/dist/"), { ignored: /^\./, persistent: true });
-    watcher
-        .on('change', function (path) {
-        browserInstance.reloadTab();
-        console.log('File', path, 'has been updated');
-    })
-        .on('error', function (error) { console.error('Error happened', error); });
-    // .on('unlink', function(path) {console.log('File', path, 'has been removed');})
-    // .on('add', function(path) {console.log('File', path, 'has been added');})
-});
-launch();
+class Index {
+    constructor(config) {
+        this.config = config;
+        this.launch();
+    }
+    ;
+    launch() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let browserInstance = yield Puppeteer_1.default.build(this.config.url);
+            yield browserInstance.start();
+            const watcher = chokidar_1.default.watch(path_1.default.resolve(process.cwd() + "/dist/"), { ignored: /^\./, persistent: true });
+            watcher
+                .on('change', function (path) {
+                browserInstance.reloadTab();
+                console.log('File', path, 'has been updated');
+            })
+                .on('error', function (error) { console.error('Error happened', error); });
+            // .on('unlink', function(path) {console.log('File', path, 'has been removed');})
+            // .on('add', function(path) {console.log('File', path, 'has been added');})
+        });
+    }
+}
+exports.default = Index;
