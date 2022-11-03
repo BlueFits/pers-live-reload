@@ -52,7 +52,7 @@ export default class PuppeteerBrowser {
 
 		const pages = await browser.pages();
 		const page = pages[0];
-		await page.goto(url, { waitUntil: 'load' });
+		await page.goto(url, { waitUntil: 'load', timeout: 0 });
 
         this.instance = new PuppeteerBrowser(page, jsPath);
 		return this.instance;
