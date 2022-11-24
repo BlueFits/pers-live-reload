@@ -21,13 +21,13 @@ class Index {
     
         const watcher = chokidar.watch(path.resolve(process.cwd() + "/dist/"), {ignored: /^\./, persistent: true});
         watcher
-            .on('change', function(path: any) {
-                browserInstance.reloadTab();
-                console.log('File', path, 'has been updated');
-            })
-            .on('error', function(error: any) {console.error('Error happened', error);})
-            // .on('unlink', function(path) {console.log('File', path, 'has been removed');})
-            // .on('add', function(path) {console.log('File', path, 'has been added');})
+        .on('change', function(path: any) {
+            browserInstance.reloadTab();
+            console.log('File', path, 'has been updated');
+        })
+        .on('error', function(error: any) {console.error('Error happened', error);})
+        // .on('unlink', function(path) {console.log('File', path, 'has been removed');})
+        // .on('add', function(path) {console.log('File', path, 'has been added');})
     }
 }
 
